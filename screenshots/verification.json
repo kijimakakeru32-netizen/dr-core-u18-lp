@@ -1,0 +1,44 @@
+[
+  {
+    "name": "u18-mobile-390",
+    "innerWidth": 390,
+    "scrollWidth": 390,
+    "pageWidth": 390,
+    "pageLeft": 0,
+    "overflow": false,
+    "header": true,
+    "footer": true,
+    "floating": true,
+    "ctaLinks": 5,
+    "floatingVisible": true,
+    "failedRequests": []
+  },
+  {
+    "name": "u18-mobile-430",
+    "innerWidth": 430,
+    "scrollWidth": 430,
+    "pageWidth": 430,
+    "pageLeft": 0,
+    "overflow": false,
+    "header": true,
+    "footer": true,
+    "floating": true,
+    "ctaLinks": 5,
+    "floatingVisible": true,
+    "failedRequests": []
+  },
+  {
+    "name": "u18-pc-1280",
+    "innerWidth": 1280,
+    "scrollWidth": 1280,
+    "pageWidth": 430,
+    "pageLeft": 425,
+    "overflow": false,
+    "header": true,
+    "footer": true,
+    "floating": true,
+    "ctaLinks": 5,
+    "floatingVisible": true,
+    "failedRequests": []
+  }
+]

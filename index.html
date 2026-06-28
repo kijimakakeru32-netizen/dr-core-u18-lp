@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dr.core U18 | 7〜18歳向けパーソナルトレーニング</title>
+  <meta name="description" content="Dr.core U18は7〜18歳向けの完全マンツーマンパーソナルトレーニングです。競技力、姿勢、体幹、集中力を成長期に合わせて伸ばします。">
+  <style>
+    :root {
+      --green: #2dd97a;
+      --green-dark: #10a85c;
+      --black: #070908;
+      --ink: #111714;
+      --muted: #66716b;
+      --paper: #f6f8f4;
+      --line: rgba(17, 23, 20, .12);
+      --white: #fff;
+      --reserve-url: "https://reserve.quick-reserve.com/core?view=eyJ2ZXJzaW9uIjoyLCJzdG9yZXMiOlt7ImlkIjoyMzEsImNvdXJzZUlkcyI6WzI3OTJdfV19";
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #d8ded9;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    }
+
+    .page {
+      width: min(100%, 430px);
+      margin: 0 auto;
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .section {
+      position: relative;
+      scroll-margin-top: 76px;
+    }
+
+    .dark {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .inner {
+      padding: 56px 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-size: clamp(42px, 11vw, 52px);
+      line-height: .98;
+      letter-spacing: 0;
+      font-weight: 950;
+    }
+    h2 {
+      font-size: 30px;
+      line-height: 1.18;
+      letter-spacing: 0;
+      font-weight: 950;
+    }
+    h3 {
+      font-size: 18px;
+      line-height: 1.38;
+      font-weight: 900;
+    }
+    p { font-size: 14px; line-height: 1.82; }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .lead {
+      color: rgba(255,255,255,.78);
+      font-size: 15px;
+      line-height: 1.9;
+      margin-top: 16px;
+    }
+
+    .green { color: var(--green); }
+
+    .site-header {
+      position: fixed;
+      left: 50%;
+      top: 0;
+      z-index: 80;
+      width: min(100%, 430px);
+      height: 64px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      background: rgba(7, 9, 8, .92);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(14px);
+      color: #fff;
+    }
+
+    .site-logo {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: .01em;
+    }
+    .site-logo span { color: var(--green); }
+
+    .menu-toggle {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .menu-toggle i,
+    .menu-toggle i:before,
+    .menu-toggle i:after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+      transition: transform .22s ease, opacity .22s ease;
+    }
+    .menu-toggle i:before { transform: translateY(-6px); }
+    .menu-toggle i:after { transform: translateY(4px); }
+    .menu-toggle.is-open i { transform: rotate(45deg); }
+    .menu-toggle.is-open i:before { opacity: 0; }
+    .menu-toggle.is-open i:after { transform: translateY(-2px) rotate(-90deg); }
+
+    .mobile-menu {
+      position: fixed;
+      left: 50%;
+      top: 64px;
+      z-index: 79;
+      width: min(100%, 430px);
+      transform: translate(-50%, -12px);
+      opacity: 0;
+      pointer-events: none;
+      background: rgba(7, 9, 8, .97);
+      border-bottom: 1px solid rgba(45,217,122,.28);
+      box-shadow: 0 24px 44px rgba(0,0,0,.3);
+      padding: 10px 18px 18px;
+      transition: opacity .22s ease, transform .22s ease;
+    }
+    .mobile-menu.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, 0);
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 13px 4px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      color: rgba(255,255,255,.9);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 850;
+    }
+    .mobile-menu a:last-child { border-bottom: 0; }
+
+    .cta {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 24px;
+      padding: 0 16px;
+      background: var(--green);
+      color: var(--black);
+      text-decoration: none;
+      font-weight: 950;
+      font-size: 16px;
+      box-shadow: 0 16px 36px rgba(45,217,122,.28);
+    }
+
+    .hero {
+      min-height: 1000px;
+      background:
+        radial-gradient(circle at 86% 18%, rgba(45,217,122,.28), transparent 25%),
+        linear-gradient(155deg, #171c19 0%, #070908 54%, #101914 100%);
+    }
+    .hero .inner { padding-top: 106px; }
+    .hero-visual {
+      margin-top: 26px;
+      height: 334px;
+      width: calc(100% + 44px);
+      margin-left: -22px;
+      background: url("assets/first-view-u18.png") 86% center / cover;
+      border-top: 1px solid rgba(255,255,255,.14);
+      border-bottom: 1px solid rgba(255,255,255,.14);
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,.14);
+      border-bottom: 1px solid rgba(255,255,255,.14);
+      margin-top: 26px;
+    }
+    .metric { padding: 14px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,.14); }
+    .metric:last-child { border-right: 0; }
+    .metric b { display: block; font-size: 18px; color: var(--green); }
+    .metric span { display: block; font-size: 10px; color: rgba(255,255,255,.66); line-height: 1.45; margin-top: 5px; }
+
+    .reservation {
+      margin-top: 24px;
+      background: #fff;
+      color: var(--black);
+      padding: 18px;
+      border-left: 8px solid var(--green);
+    }
+    .reservation .price { font-size: 39px; line-height: 1; font-weight: 950; color: var(--green-dark); }
+    .reservation small { display: block; margin-top: 8px; color: var(--muted); font-weight: 800; }
+
+    .banner {
+      height: 270px;
+      background: #101511;
+      border-top: 1px solid rgba(255,255,255,.1);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .banner img { width: 100%; height: 100%; object-fit: cover; opacity: .88; display: block; }
+
+    .problem-list { margin-top: 28px; border-top: 1px solid rgba(255,255,255,.14); }
+    .problem-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 14px;
+      padding: 19px 0;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+    }
+    .num { font-size: 24px; line-height: 1; font-weight: 950; color: var(--green); }
+    .problem-item p { font-size: 15px; line-height: 1.58; font-weight: 850; }
+
+    .body-copy { margin-top: 16px; color: var(--muted); }
+    .wide-photo {
+      height: 320px;
+      margin-top: 28px;
+      width: calc(100% + 44px);
+      margin-left: -22px;
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .wide-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .focus-box {
+      margin-top: 20px;
+      padding: 22px;
+      background: linear-gradient(135deg, #0d120f, #182019);
+      border: 1px solid rgba(45,217,122,.34);
+      color: #fff;
+    }
+    .focus-box ul,
+    .persona ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+    }
+    .focus-box li,
+    .persona li {
+      margin: 8px 0;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .feature-grid,
+    .persona-grid,
+    .card-grid,
+    .flow-list,
+    .faq-list,
+    .service-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .feature,
+    .persona,
+    .voice-card,
+    .price-card,
+    .flow-step,
+    .qa,
+    .service-card {
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .feature { padding: 18px; border-left: 6px solid var(--green); }
+    .feature p { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .persona { padding: 22px; border-top: 5px solid var(--green); }
+    .persona li { color: var(--muted); font-weight: 750; }
+
+    .trainer-card {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: 16px;
+      margin-top: 18px;
+      padding: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .trainer-card img { width: 132px; height: 176px; object-fit: cover; filter: grayscale(.08) contrast(1.04); }
+    .trainer-card small { color: var(--green-dark); font-weight: 900; letter-spacing: .08em; }
+    .trainer-card p { font-size: 12px; color: var(--muted); line-height: 1.65; margin-top: 8px; }
+
+    .voice-card { overflow: hidden; }
+    .voice-card img { width: 100%; height: 210px; object-fit: cover; display: block; }
+    .voice-body { padding: 18px; }
+    .voice-body p { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.78; }
+    .person { margin-top: 12px; color: var(--green-dark); font-weight: 900; font-size: 13px; }
+
+    .price-card { padding: 22px; }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .price-row:last-child { border-bottom: 0; }
+    .price-row b { font-size: 17px; }
+    .price-row strong { color: #d60000; font-size: 30px; white-space: nowrap; }
+    .campaign {
+      margin-top: 18px;
+      padding: 20px;
+      background: var(--black);
+      color: #fff;
+      border-left: 8px solid var(--green);
+    }
+    .campaign strong { display: block; color: var(--green); font-size: 34px; margin-top: 8px; }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 98px 1fr;
+      gap: 14px;
+      padding: 12px;
+      align-items: center;
+    }
+    .flow-step img { width: 98px; height: 98px; object-fit: cover; }
+    .flow-step small { color: var(--green-dark); font-weight: 950; letter-spacing: .1em; }
+    .flow-step p { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.65; }
+
+    .map-link {
+      display: block;
+      margin-top: 22px;
+      padding: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .info-list { margin-top: 18px; background: #fff; border: 1px solid var(--line); }
+    .info-row { padding: 14px 16px; border-bottom: 1px solid var(--line); }
+    .info-row:last-child { border-bottom: 0; }
+    .info-row b { display: block; font-size: 12px; color: var(--green-dark); letter-spacing: .08em; }
+    .info-row span { display: block; font-size: 13px; line-height: 1.7; margin-top: 4px; }
+
+    .qa { padding: 16px; }
+    .qa b { color: var(--green-dark); font-size: 18px; margin-right: 8px; }
+    .qa p { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+    .service-card {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 12px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .service-card img { width: 96px; height: 76px; object-fit: cover; }
+    .service-card p { color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+    .site-footer {
+      background: #070908;
+      color: #fff;
+      padding: 34px 22px 116px;
+    }
+    .footer-logo { font-size: 21px; font-weight: 950; }
+    .footer-logo span { color: var(--green); }
+    .footer-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 16px;
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.14);
+    }
+    .footer-nav a {
+      color: rgba(255,255,255,.76);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+    .copyright { margin-top: 22px; color: rgba(255,255,255,.48); font-size: 11px; }
+
+    .floating-cta {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      z-index: 90;
+      width: min(398px, calc(100vw - 24px));
+      min-height: 78px;
+      transform: translate(-50%, 120%);
+      opacity: 0;
+      pointer-events: none;
+      display: grid;
+      grid-template-columns: 1fr 38px;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 14px 14px 18px;
+      background:
+        radial-gradient(circle at 14% 0%, rgba(255,255,255,.26), transparent 34%),
+        linear-gradient(135deg, #0ecf70 0%, #23e687 52%, #11b964 100%);
+      border: 1px solid rgba(255,255,255,.86);
+      border-radius: 999px;
+      color: #07120c;
+      text-decoration: none;
+      box-shadow: 0 18px 40px rgba(0,0,0,.34), 0 0 0 6px rgba(45,217,122,.16), inset 0 1px 0 rgba(255,255,255,.32);
+      transition: transform .28s ease, opacity .28s ease;
+    }
+    .floating-cta.is-visible { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+    .floating-cta strong { display: block; font-size: 17px; line-height: 1.44; font-weight: 950; }
+    .floating-cta span {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: #07120c;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    @media (min-width: 431px) {
+      body { padding: 24px 0; }
+      .page { box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 24px 70px rgba(0,0,0,.14); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-logo" href="#section-01">Dr.core <span>U18</span></a>
+    <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-controls="mobile-menu" aria-expanded="false"><i></i></button>
+  </header>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="セクションメニュー">
+    <a href="#section-01">ページトップ</a>
+    <a href="#section-02">お悩み</a>
+    <a href="#section-03">Dr.core U18とは</a>
+    <a href="#section-04">こんな子が来ています</a>
+    <a href="#section-05">トレーナー / 保護者の声</a>
+    <a href="#section-06">料金プラン</a>
+    <a href="#section-07">体験の流れ</a>
+    <a href="#section-08">アクセス</a>
+    <a href="#section-09">よくある質問</a>
+  </nav>
+
+  <main class="page">
+    <section class="section hero dark" id="section-01">
+      <div class="inner">
+        <div class="eyebrow">YOUTH PERFORMANCE LAB</div>
+        <h1>伸びる身体は、<br><span class="green">才能</span>を<br>待たない。</h1>
+        <p class="lead">競技力、姿勢、体幹、集中力。成長期に必要な「正しい身体の使い方」を、その子だけのマンツーマンで。</p>
+        <div class="hero-visual" aria-label="Dr.core U18のトレーニング風景"></div>
+        <div class="metric-row">
+          <div class="metric"><b>1:1</b><span>完全マンツーマン</span></div>
+          <div class="metric"><b>U18</b><span>7〜18歳対応</span></div>
+          <div class="metric"><b>60min</b><span>初回体験</span></div>
+        </div>
+        <a class="cta" href="https://reserve.quick-reserve.com/core?view=eyJ2ZXJzaW9uIjoyLCJzdG9yZXMiOlt7ImlkIjoyMzEsImNvdXJzZUlkcyI6WzI3OTJdfV19" target="_blank" rel="noopener noreferrer">体験トレーニングに申し込む</a>
+        <div class="reservation">
+          <h3>初回体験レッスン</h3>
+          <div class="price">60分 1,000円</div>
+          <small>6月30日までの予約限定 / 先着枠あり</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" id="section-02">
+      <div class="banner"><img src="assets/trial-banner-u18-child.png" alt=""></div>
+      <div class="inner">
+        <div class="eyebrow">PARENT'S CONCERN</div>
+        <h2>お子さんに<br>こんなお悩みを<br>感じてませんか？</h2>
+        <div class="problem-list">
+          <div class="problem-item"><div class="num">01</div><p>スポーツをしているが、パフォーマンスが伸び悩んでいる</p></div>
+          <div class="problem-item"><div class="num">02</div><p>部活やグループレッスンでは、わが子の個別ニーズに対応できない</p></div>
+          <div class="problem-item"><div class="num">03</div><p>成長期に正しい体の使い方を身につけさせてあげたい</p></div>
+          <div class="problem-item"><div class="num">04</div><p>体力・集中力が落ちて、勉強にも影響が出ている</p></div>
+          <div class="problem-item"><div class="num">05</div><p>姿勢が悪く、慢性的な肩こりや片頭痛が出ている</p></div>
+        </div>
+        <a class="cta" href="https://reserve.quick-reserve.com/core?view=eyJ2ZXJzaW9uIjoyLCJzdG9yZXMiOlt7ImlkIjoyMzEsImNvdXJzZUlkcyI6WzI3OTJdfV19" target="_blank" rel="noopener noreferrer">まずは体の状態をチェックする</a>
+      </div>
+    </section>
+
+    <section class="section" id="section-03">
+      <div class="inner">
+        <div class="eyebrow">WHAT IS DR.CORE U18</div>
+        <h2>その子だけの<br>プログラム</h2>
+        <p class="body-copy">一般的なグループレッスンでは対応できない、その子の体の特性、スポーツの種類、目標に合わせた完全オーダーメイドのトレーニングプログラムを提供します。</p>
+        <div class="wide-photo"><img src="assets/trial-banner-u18.png" alt=""></div>
+        <div class="focus-box">
+          <h3>Dr.core U18が大切にしていること</h3>
+          <ul>
+            <li>成長期の体の発達段階に合わせたプログラム設計</li>
+            <li>スポーツパフォーマンスと日常生活の両面からのアプローチ</li>
+            <li>子どもの心身の成長を支援するコーチング</li>
+          </ul>
+        </div>
+        <div class="feature-grid">
+          <div class="feature"><h3>個別ニーズ対応</h3><p>体の特性、スポーツの種類、目標に合わせたオーダーメイドプログラム。</p></div>
+          <div class="feature"><h3>成長期専門</h3><p>7〜18歳の成長段階に合わせた科学的アプローチ。</p></div>
+          <div class="feature"><h3>マンツーマン指導</h3><p>完全プライベートレッスンで、きめ細かいサポート。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-04">
+      <div class="inner">
+        <div class="eyebrow">Recommended</div>
+        <h2>こんな子が<br>来ています</h2>
+        <div class="persona-grid">
+          <div class="persona"><h3>スポーツを頑張っている子</h3><ul><li>競技力を高めたい</li><li>パフォーマンスが伸び悩んでいる</li><li>怪我を予防したい</li></ul></div>
+          <div class="persona"><h3>姿勢・体の悩みがある子</h3><ul><li>姿勢が悪い</li><li>肩こりや頭痛がある</li><li>体が硬い</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-05">
+      <div class="inner">
+        <div class="eyebrow">Trainer & Voice</div>
+        <h2>トレーナー /<br>保護者の声</h2>
+        <div class="trainer-card">
+          <img src="assets/kijima-card.jpg" alt="">
+          <div><small>Kakeru Kijima</small><h3>木嶋 翔</h3><p>整体師としての経験も活かし、初心者から上級者まで幅広くサポートします。</p></div>
+        </div>
+        <div class="trainer-card">
+          <img src="assets/takakura-card.png" alt="">
+          <div><small>Hiroki Takakura</small><h3>高倉 大輝</h3><p>姿勢改善・機能改善を軸に、成長期の身体づくりを丁寧に指導します。</p></div>
+        </div>
+        <div class="card-grid">
+          <div class="voice-card"><img src="assets/voice-guardian-01.png" alt=""><div class="voice-body"><h3>パフォーマンスが劇的に改善</h3><p>個別対応のおかげで、わが子の課題が明確になり、短期間でパフォーマンスが改善しました。</p><div class="person">保護者 / 10歳 野球</div></div></div>
+          <div class="voice-card"><img src="assets/voice-guardian-02.png" alt=""><div class="voice-body"><h3>姿勢が良くなった</h3><p>毎週のレッスンで、子どもの姿勢が目に見えて良くなりました。学校の成績も上がったと言われました。</p><div class="person">保護者 / 13歳 ダンス</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-06">
+      <div class="inner">
+        <div class="eyebrow">Price Plan</div>
+        <h2>料金プラン</h2>
+        <div class="price-card">
+          <div class="price-row"><div><b>スタンダード</b><p>月4回（週1回） / 60分</p></div><strong>8,000円</strong></div>
+          <div class="price-row"><div><b>プレミアム</b><p>月8回（週2回） / 60分</p></div><strong>14,000円</strong></div>
+        </div>
+        <div class="campaign">
+          <h3>永続割引キャンペーン</h3>
+          <strong>30%OFF</strong>
+          <p>6月30日まで / 新規入会者限定</p>
+        </div>
+        <a class="cta" href="https://reserve.quick-reserve.com/core?view=eyJ2ZXJzaW9uIjoyLCJzdG9yZXMiOlt7ImlkIjoyMzEsImNvdXJzZUlkcyI6WzI3OTJdfV19" target="_blank" rel="noopener noreferrer">体験トレーニングに申し込む</a>
+      </div>
+    </section>
+
+    <section class="section" id="section-07">
+      <div class="inner">
+        <div class="eyebrow">Trial Flow</div>
+        <h2>体験トレーニングの流れ</h2>
+        <div class="flow-list">
+          <div class="flow-step"><img src="assets/flow01-smartphone.jpg" alt=""><div><small>FLOW 01</small><h3>カウンセリング</h3><p>お子さんの悩みや目標をお聞きします。</p></div></div>
+          <div class="flow-step"><img src="assets/flow03.jpg" alt=""><div><small>FLOW 02</small><h3>体の状態チェック</h3><p>姿勢、柔軟性、筋力などを評価します。</p></div></div>
+          <div class="flow-step"><img src="assets/flow04.jpg" alt=""><div><small>FLOW 03</small><h3>トレーニング体験</h3><p>その子に合わせたプログラムを実施します。</p></div></div>
+          <div class="flow-step"><img src="assets/flow05.jpg" alt=""><div><small>FLOW 04</small><h3>フィードバック</h3><p>結果と今後のプランをご説明します。</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-08">
+      <div class="inner">
+        <div class="eyebrow">Access</div>
+        <h2>アクセス</h2>
+        <a class="map-link" href="https://maps.app.goo.gl/vatbT1pgNW52R4jQ9" target="_blank" rel="noopener noreferrer">
+          <h3>Googleマップで開く</h3>
+          <p>Dr.core月島店の場所を確認できます。</p>
+        </a>
+        <div class="info-list">
+          <div class="info-row"><b>住所</b><span>東京都中央区佃2-5-13 スカイコートパレス月島102</span></div>
+          <div class="info-row"><b>アクセス</b><span>月島駅より徒歩3分</span></div>
+          <div class="info-row"><b>電話</b><span>03-3520-8337</span></div>
+          <div class="info-row"><b>営業時間</b><span>10:00〜22:00 / 年中無休</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-09">
+      <div class="inner">
+        <div class="eyebrow">Q and A</div>
+        <h2>よくある質問</h2>
+        <div class="faq-list">
+          <div class="qa"><b>Q.</b><h3>何歳から始められますか？</h3><p>7歳から18歳までが対象です。成長期の体の発達段階に合わせたプログラムを提供します。</p></div>
+          <div class="qa"><b>Q.</b><h3>スポーツの経験がなくても大丈夫ですか？</h3><p>もちろんです。これからスポーツを始めたい方や、体の悩みがある方にもおすすめです。</p></div>
+          <div class="qa"><b>Q.</b><h3>どのくらいで効果が出ますか？</h3><p>個人差がありますが、多くの方が3ヶ月で変化を実感されています。</p></div>
+          <div class="qa"><b>Q.</b><h3>保護者の同伴は必要ですか？</h3><p>初回体験時は、保護者の同伴をお勧めしています。2回目以降は、お子さんのみでのご参加も可能です。</p></div>
+        </div>
+        <a class="cta" href="https://reserve.quick-reserve.com/core?view=eyJ2ZXJzaW9uIjoyLCJzdG9yZXMiOlt7ImlkIjoyMzEsImNvdXJzZUlkcyI6WzI3OTJdfV19" target="_blank" rel="noopener noreferrer">体験トレーニングに申し込む</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="inner">
+        <div class="eyebrow">Our Services</div>
+        <h2>OUR SERVICES</h2>
+        <p class="body-copy">Dr.coreは、年代別・目的別に最適なトレーニングプログラムを提供しています。</p>
+        <div class="service-grid">
+          <a class="service-card" href="https://drcore-personal.manus.space" target="_blank" rel="noopener noreferrer"><img src="assets/service-personal.png" alt=""><div><h3>Dr.core Personal</h3><p>大人向けパーソナル</p></div></a>
+          <a class="service-card" href="#section-01"><img src="assets/trial-banner-u18-child.png" alt=""><div><h3>Dr.core U18</h3><p>7〜18歳向けパーソナル</p></div></a>
+          <a class="service-card" href="https://drcore-woman2.manus.space" target="_blank" rel="noopener noreferrer"><img src="assets/service-woman.png" alt=""><div><h3>Dr.core Woman</h3><p>50歳以上の女性向け</p></div></a>
+          <a class="service-card" href="https://drcore-jr.manus.space" target="_blank" rel="noopener noreferrer"><img src="assets/service-jr.png" alt=""><div><h3>Dr.core Jr</h3><p>子供向け運動教室</p></div></a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-logo">Dr.core <span>U18</span></div>
+      <nav class="footer-nav">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">利用規約</a>
+        <a href="#">お問い合わせ</a>
+        <a href="https://instagram.com/drcore" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </nav>
+      <p class="copyright">© 2026 Dr.core. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <a class="floating-cta" href="https://reserve.quick-reserve.com/core?view=eyJ2ZXJzaW9uIjoyLCJzdG9yZXMiOlt7ImlkIjoyMzEsImNvdXJzZUlkcyI6WzI3OTJdfV19" target="_blank" rel="noopener noreferrer">
+    <strong>6/30まで体験1,000円<br>今すぐ体験トレーニングに申し込む</strong>
+    <span>→</span>
+  </a>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const floatingCta = document.querySelector('.floating-cta');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.classList.toggle('is-open');
+      mobileMenu.classList.toggle('is-open', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('is-open');
+        mobileMenu.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'メニューを開く');
+      });
+    });
+
+    const updateFloatingCta = () => {
+      floatingCta.classList.toggle('is-visible', window.scrollY > 620);
+    };
+
+    updateFloatingCta();
+    window.addEventListener('scroll', updateFloatingCta, { passive: true });
+  </script>
+</body>
+</html>
