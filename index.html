@@ -316,32 +316,209 @@
     .trainer-card small { color: var(--green-dark); font-weight: 900; letter-spacing: .08em; }
     .trainer-card p { font-size: 12px; color: var(--muted); line-height: 1.65; margin-top: 8px; }
 
-    .voice-card { overflow: hidden; }
-    .voice-card img { width: 100%; height: 210px; object-fit: cover; display: block; }
+    .voice {
+      margin-top: 38px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+    .voice-title { margin-bottom: 20px; }
+    .voice-list { display: grid; gap: 18px; }
+    .voice-card {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--green);
+      overflow: hidden;
+    }
+    .voice-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      object-position: center 42%;
+      display: block;
+    }
     .voice-body { padding: 18px; }
-    .voice-body p { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.78; }
-    .person { margin-top: 12px; color: var(--green-dark); font-weight: 900; font-size: 13px; }
-
-    .price-card { padding: 22px; }
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 16px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .price-row:last-child { border-bottom: 0; }
-    .price-row b { font-size: 17px; }
-    .price-row strong { color: #d60000; font-size: 30px; white-space: nowrap; }
-    .campaign {
-      margin-top: 18px;
-      padding: 20px;
+    .voice-card h3 { font-size: 18px; line-height: 1.45; }
+    .voice-card p { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.72; }
+    .voice-person {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 10px;
       background: var(--black);
-      color: #fff;
-      border-left: 8px solid var(--green);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .06em;
     }
-    .campaign strong { display: block; color: var(--green); font-size: 34px; margin-top: 8px; }
+
+    .price-card {
+      margin-top: 22px;
+      background: #f4f4f4;
+      border: 1px solid #d7d7d7;
+      padding: 22px 18px;
+      color: #303030;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    }
+    .price-card h3 {
+      text-align: center;
+      font-size: 25px;
+      line-height: 1.25;
+      letter-spacing: .04em;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #333;
+      font-weight: 800;
+    }
+    .trial-before {
+      margin-top: 18px;
+      text-align: center;
+      color: #777;
+      font-size: 28px;
+      line-height: 1;
+      text-decoration: line-through;
+    }
+    .price-arrow {
+      text-align: center;
+      font-size: 28px;
+      line-height: 1;
+      margin: 5px 0 6px;
+    }
+    .trial-now {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      align-items: center;
+      gap: 10px;
+      color: #d40000;
+      margin-top: 4px;
+    }
+    .trial-now .limit { font-size: 19px; line-height: 1.35; font-weight: 800; text-align: center; }
+    .trial-now .yen { font-size: 44px; line-height: .95; white-space: nowrap; }
+    .trial-now .yen small, .trial-before small { font-size: .42em; }
+    .course-sub {
+      margin-top: 12px;
+      text-align: center;
+      color: #969696;
+      font-size: 17px;
+      line-height: 1.75;
+      font-weight: 700;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    }
+    .join-fee {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 22px 0 19px;
+      border-bottom: 1px solid #777;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    }
+    .join-fee .old { color: #777; font-size: 31px; white-space: nowrap; text-align: center; }
+    .join-campaign-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      justify-content: center;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+    .join-fee .campaign {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border-left: 0;
+      color: #d40000;
+      font-size: 20px;
+      line-height: 1.55;
+      text-align: center;
+      font-weight: 800;
+    }
+    .join-fee .free { color: #d40000; font-size: 48px; line-height: 1; }
+    .plan-line {
+      padding: 18px 0;
+      border-bottom: 1px solid #777;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    }
+    .plan-line h4 { margin: 0 0 8px; font-size: 23px; }
+    .plan-price {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+    .plan-price .total { font-size: 25px; white-space: nowrap; }
+    .plan-price .per { color: #d40000; font-size: 23px; text-align: right; white-space: nowrap; }
+    .plan-note { margin-top: 18px; text-align: center; font-size: 16px; font-weight: 800; }
+    .discount-card {
+      border-color: #9a6b20;
+      border-width: 2px;
+      padding-top: 18px;
+    }
+    .discount-head {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #777;
+    }
+    .discount-badge {
+      border: 2px solid #caa23b;
+      color: #9a6b20;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.25;
+      font-weight: 800;
+    }
+    .discount-head h3 {
+      border: 0;
+      padding: 0;
+      text-align: left;
+      font-size: 24px;
+      line-height: 1.45;
+    }
+    .discount-line {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid #777;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    }
+    .discount-line h4 { grid-column: 1 / -1; margin: 0; font-size: 22px; }
+    .discount-line .old { color: #777; font-size: 24px; text-decoration: line-through; white-space: nowrap; }
+    .discount-line .arrow { font-size: 22px; }
+    .discount-line .new { color: #9a5f12; font-size: 23px; text-align: right; white-space: nowrap; }
+    .pair-img {
+      margin-top: 24px;
+      height: 194px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .pair-img img { width: 100%; height: 100%; object-fit: cover; }
+    .pair-note { margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .options {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 22px 18px 24px;
+      background: #f1f1f1;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    }
+    .options h3 {
+      text-align: center;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #555;
+      font-size: 25px;
+      margin-bottom: 8px;
+      letter-spacing: .04em;
+    }
+    .option { background: #fff; border: 1px solid #e0e0e0; padding: 16px 12px; text-align: center; font-weight: 850; font-size: 20px; letter-spacing: .04em; }
 
     .flow-step {
       display: grid;
@@ -553,9 +730,45 @@
           <img src="assets/takakura-card.png" alt="">
           <div><small>Hiroki Takakura</small><h3>高倉 大輝</h3><p>姿勢改善・機能改善を軸に、成長期の身体づくりを丁寧に指導します。</p></div>
         </div>
-        <div class="card-grid">
-          <div class="voice-card"><img src="assets/voice-guardian-01.png" alt=""><div class="voice-body"><h3>パフォーマンスが劇的に改善</h3><p>個別対応のおかげで、わが子の課題が明確になり、短期間でパフォーマンスが改善しました。</p><div class="person">保護者 / 10歳 野球</div></div></div>
-          <div class="voice-card"><img src="assets/voice-guardian-02.png" alt=""><div class="voice-body"><h3>姿勢が良くなった</h3><p>毎週のレッスンで、子どもの姿勢が目に見えて良くなりました。学校の成績も上がったと言われました。</p><div class="person">保護者 / 13歳 ダンス</div></div></div>
+        <div class="voice">
+          <div class="voice-title">
+            <div class="eyebrow">Guardian voice</div>
+            <h2>保護者の声</h2>
+          </div>
+          <div class="voice-list">
+            <div class="voice-card">
+              <img src="assets/voice-guardian-01.png" alt="">
+              <div class="voice-body">
+                <h3>走り方が変わり、短距離のタイムが縮んだ</h3>
+                <p>元々走るフォームが悪く、力みが出たり、腕を上手く振れなかったが、専門的な指導のおかげで、体の使い方を根本から見直すことができました。特に、重心移動や腕の振り方を意識するようになってからは、無駄な力が抜け、スムーズに走れるように。その結果、短距離走のタイムが大幅に縮まり、本人も自信がついたようです。</p>
+                <div class="voice-person">高校1年生 女子</div>
+              </div>
+            </div>
+            <div class="voice-card">
+              <img src="assets/voice-guardian-02.png" alt="">
+              <div class="voice-body">
+                <h3>部活では聞けない体の使い方を教えてもらえる</h3>
+                <p>バスケ部で毎日練習をしているものの、基礎的な体の使い方がわかっておらず、パフォーマンスが伸び悩んでいました。しかし、こちらで体の軸の意識や、ジャンプ時の着地の仕方など、部活ではなかなか教えてもらえない専門的な体の使い方を学ぶことができました。おかげで、プレイの質が向上し、怪我の予防にも繋がっています。</p>
+                <div class="voice-person">中学1年生 男子</div>
+              </div>
+            </div>
+            <div class="voice-card">
+              <img src="assets/voice-guardian-03.png" alt="">
+              <div class="voice-body">
+                <h3>猫背を解消して、勉強に集中できるようになった</h3>
+                <p>運動は元々得意ではなかったので、運動不足になりがちでしたが、姿勢が悪くなり、集中力が続かないことが悩みでした。こちらで猫背を改善するためのストレッチや体幹トレーニングを教えていただき、継続することで、見違えるほど姿勢が良くなりました。その結果、長時間座っていても疲れにくくなり、勉強にも以前より集中できるようになりました。</p>
+                <div class="voice-person">小学5年生 男子</div>
+              </div>
+            </div>
+            <div class="voice-card">
+              <img src="assets/voice-guardian-04.png" alt="">
+              <div class="voice-body">
+                <h3>怪我を繰り返さなくなり、安定してパフォーマンスが出せるようになった</h3>
+                <p>右足の捻挫が多くクセになっていましたが、バランスや体の連動性を意識したトレーニングを取り入れたことで、怪我をしにくい体へと変化しました。以前は不安を感じながらプレイしていましたが、今では安心して全力でパフォーマンスを発揮できるようになり、親としても大変嬉しく思っています。</p>
+                <div class="voice-person">中学3年生 男子</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -565,13 +778,60 @@
         <div class="eyebrow">Price Plan</div>
         <h2>料金プラン</h2>
         <div class="price-card">
-          <div class="price-row"><div><b>スタンダード</b><p>月4回（週1回） / 60分</p></div><strong>8,000円</strong></div>
-          <div class="price-row"><div><b>プレミアム</b><p>月8回（週2回） / 60分</p></div><strong>14,000円</strong></div>
+          <h3>体験トレーニング</h3>
+          <div class="trial-before">¥14,000<small>(税込)</small></div>
+          <div class="price-arrow">⌄</div>
+          <div class="trial-now">
+            <div class="limit">先着<br>5名様<br>限定</div>
+            <div class="yen">¥1,000<small>(税込)</small></div>
+          </div>
         </div>
-        <div class="campaign">
-          <h3>永続割引キャンペーン</h3>
-          <strong>30%OFF</strong>
-          <p>7月31日まで / 新規入会者限定</p>
+        <div class="price-card">
+          <h3>月額コース</h3>
+          <div class="course-sub">お客様の目的・目標に合ったコースを<br>お選びいただけます。</div>
+          <div class="join-fee">
+            <div class="old">入会金 ¥33,000</div>
+            <div class="price-arrow">⌄</div>
+            <div class="join-campaign-row">
+              <div class="campaign">先着<br>5名様限定<br>体験当日の入会で</div>
+              <div class="free">¥0</div>
+            </div>
+          </div>
+          <div class="plan-line">
+            <h4>都度1回払い</h4>
+            <div class="plan-price"><div class="total">¥14,000(税込)</div><div class="per">¥14,000 / 回</div></div>
+          </div>
+          <div class="plan-line">
+            <h4>月2プラン</h4>
+            <div class="plan-price"><div class="total">¥24,000(税込)</div><div class="per">¥12,000 / 回</div></div>
+          </div>
+          <div class="plan-line">
+            <h4>月4プラン</h4>
+            <div class="plan-price"><div class="total">¥46,000(税込)</div><div class="per">¥11,500 / 回</div></div>
+          </div>
+          <div class="plan-line">
+            <h4>月8プラン</h4>
+            <div class="plan-price"><div class="total">¥88,000(税込)</div><div class="per">¥11,000 / 回</div></div>
+          </div>
+          <div class="plan-note">※ご契約後のプラン変更も可能です</div>
+        </div>
+        <div class="price-card discount-card">
+          <div class="discount-head">
+            <div class="discount-badge">永続<br>割引</div>
+            <h3>体験当日入会で<br>月会費の永続割引が適用</h3>
+          </div>
+          <div class="discount-line"><h4>月2プラン</h4><div class="old">¥24,000</div><div class="arrow">▶</div><div class="new">¥21,000(税込)</div></div>
+          <div class="discount-line"><h4>月4プラン</h4><div class="old">¥46,000</div><div class="arrow">▶</div><div class="new">¥40,000(税込)</div></div>
+          <div class="discount-line"><h4>月8プラン</h4><div class="old">¥88,000</div><div class="arrow">▶</div><div class="new">¥76,000(税込)</div></div>
+          <div class="discount-line"><h4>入会金</h4><div class="old">¥33,000</div><div class="arrow">▶</div><div class="new">¥0(税込)</div></div>
+        </div>
+        <div class="pair-img"><img src="assets/pair_banner.jpg" alt=""></div>
+        <p class="pair-note">※ 1名での体験も可能です。<br>※ ペアで体験に来られる場合は代表者様が1名で予約いただき、備考欄に「ペアで来られる方のお名前」をご記入ください</p>
+        <div class="options">
+          <h3>無料オプション</h3>
+          <div class="option">レンタルウェア</div>
+          <div class="option">ウォーターサーバー</div>
+          <div class="option">汗拭きシート</div>
         </div>
         <a class="cta" href="https://reserve.quick-reserve.com/core?view=eyJ2ZXJzaW9uIjoyLCJzdG9yZXMiOlt7ImlkIjoyMzEsImNvdXJzZUlkcyI6WzI3OTJdfV19" target="_blank" rel="noopener noreferrer">体験トレーニングに申し込む</a>
       </div>
