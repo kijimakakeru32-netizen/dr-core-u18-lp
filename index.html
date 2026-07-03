@@ -300,8 +300,33 @@
     }
     .feature { padding: 18px; border-left: 6px solid var(--green); }
     .feature p { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.75; }
-    .persona { padding: 22px; border-top: 5px solid var(--green); }
-    .persona li { color: var(--muted); font-weight: 750; }
+    .persona-grid { margin-top: 26px; display: grid; gap: 16px; }
+    .persona {
+      background: var(--black);
+      color: #fff;
+      padding: 22px;
+      border-top: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .persona:before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto auto;
+      width: 120px;
+      height: 120px;
+      background: rgba(45,217,122,.16);
+      transform: skew(-18deg);
+    }
+    .persona ul { margin: 16px 0 0; padding: 0; list-style: none; }
+    .persona li {
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(255,255,255,.78);
+      padding: 6px 0;
+      border-top: 1px solid rgba(255,255,255,.12);
+      font-weight: 750;
+    }
 
     .trainer-card {
       display: grid;
@@ -313,13 +338,26 @@
       border: 1px solid var(--line);
     }
     .trainer-card img { width: 132px; height: 176px; object-fit: cover; filter: grayscale(.08) contrast(1.04); }
-    .trainer-card small { color: var(--green-dark); font-weight: 900; letter-spacing: .08em; }
+    .trainer-card .en,
+    .trainer-card small {
+      font-size: 11px;
+      color: var(--green-dark);
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+    .trainer-card h3 { margin-top: 4px; }
     .trainer-card p { font-size: 12px; color: var(--muted); line-height: 1.65; margin-top: 8px; }
+    .license {
+      margin-top: 10px;
+      font-size: 10px;
+      line-height: 1.5;
+      color: #3f4a44;
+      border-top: 1px solid var(--line);
+      padding-top: 9px;
+    }
 
     .voice {
-      margin-top: 38px;
-      padding-top: 28px;
-      border-top: 1px solid var(--line);
+      background: var(--paper);
     }
     .voice-title { margin-bottom: 20px; }
     .voice-list { display: grid; gap: 18px; }
@@ -522,13 +560,16 @@
 
     .flow-step {
       display: grid;
-      grid-template-columns: 98px 1fr;
+      grid-template-columns: 92px 1fr;
       gap: 14px;
-      padding: 12px;
+      padding: 15px;
       align-items: center;
+      border: 1px solid var(--line);
+      background: var(--paper);
     }
-    .flow-step img { width: 98px; height: 98px; object-fit: cover; }
+    .flow-step img { width: 92px; height: 92px; object-fit: cover; }
     .flow-step small { color: var(--green-dark); font-weight: 950; letter-spacing: .1em; }
+    .flow-step h3 { font-size: 16px; margin-top: 2px; }
     .flow-step p { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.65; }
 
     .map {
@@ -568,10 +609,30 @@
     .info-row:last-child { border-bottom: 0; }
     .info-row b { display: block; font-size: 12px; color: var(--green-dark); letter-spacing: .08em; }
     .info-row span { display: block; font-size: 13px; line-height: 1.7; margin-top: 4px; }
+    .route-grid { margin-top: 20px; display: grid; gap: 12px; }
+    .route {
+      display: grid;
+      grid-template-columns: 116px 1fr;
+      gap: 12px;
+      align-items: stretch;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 10px;
+    }
+    .route img { width: 116px; height: 84px; object-fit: cover; }
+    .route p { font-size: 12px; line-height: 1.55; }
 
     .qa { padding: 16px; }
     .qa b { color: var(--green-dark); font-size: 18px; margin-right: 8px; }
     .qa p { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .final-band {
+      margin-top: 28px;
+      background: var(--black);
+      color: #fff;
+      padding: 24px 18px;
+      text-align: center;
+    }
+    .final-band h2 { font-size: 27px; }
 
     .services-desc {
       color: rgba(255,255,255,.78);
@@ -737,11 +798,12 @@
     <a href="#section-02">お悩み</a>
     <a href="#section-03">Dr.core U18とは</a>
     <a href="#section-04">こんな子が来ています</a>
-    <a href="#section-05">トレーナー / 保護者の声</a>
-    <a href="#section-06">料金プラン</a>
-    <a href="#section-07">体験の流れ</a>
-    <a href="#section-08">アクセス</a>
-    <a href="#section-09">よくある質問</a>
+    <a href="#section-05">トレーナー紹介</a>
+    <a href="#section-06">保護者の声</a>
+    <a href="#section-07">料金プラン</a>
+    <a href="#section-08">体験の流れ</a>
+    <a href="#section-09">アクセス</a>
+    <a href="#section-10">よくある質問</a>
   </nav>
 
   <main class="page">
@@ -784,21 +846,18 @@
     <section class="section" id="section-03">
       <div class="inner">
         <div class="eyebrow">WHAT IS DR.CORE U18</div>
-        <h2>その子だけの<br>プログラム</h2>
-        <p class="body-copy">一般的なグループレッスンでは対応できない、その子の体の特性、スポーツの種類、目標に合わせた完全オーダーメイドのトレーニングプログラムを提供します。</p>
+        <h2>その子だけの<br>プログラムで、<br>本物の体を作る</h2>
+        <p class="body-copy">Dr.core U18は、7〜18歳のユース世代を対象にした完全マンツーマンのパーソナルトレーニングです。成長期の骨・筋肉・神経系の発達に特化した科学的メソッドで、姿勢・体幹・競技パフォーマンスを根本から改善します。</p>
         <div class="wide-photo"><img src="assets/trial-banner-u18.png" alt=""></div>
         <div class="focus-box">
-          <h3>Dr.core U18が大切にしていること</h3>
-          <ul>
-            <li>成長期の体の発達段階に合わせたプログラム設計</li>
-            <li>スポーツパフォーマンスと日常生活の両面からのアプローチ</li>
-            <li>子どもの心身の成長を支援するコーチング</li>
-          </ul>
+          <div class="eyebrow">Training focus</div>
+          <h3>フォーム、呼吸、重心、可動域。<br>「がんばる前」に整える。</h3>
+          <p style="margin-top:12px;color:rgba(255,255,255,.72)">小学生から高校生まで、競技や身体の発達段階に合わせて、体幹・姿勢・動作を細かく指導します。</p>
         </div>
         <div class="feature-grid">
-          <div class="feature"><h3>個別ニーズ対応</h3><p>体の特性、スポーツの種類、目標に合わせたオーダーメイドプログラム。</p></div>
-          <div class="feature"><h3>成長期専門</h3><p>7〜18歳の成長段階に合わせた科学的アプローチ。</p></div>
-          <div class="feature"><h3>マンツーマン指導</h3><p>完全プライベートレッスンで、きめ細かいサポート。</p></div>
+          <div class="feature"><h3>完全マンツーマンオーダーメイド</h3><p>体・目標・競技種目に合わせて設計する完全個別プログラム。</p></div>
+          <div class="feature"><h3>成長期特化のファンクショナル指導</h3><p>骨・筋肉・神経が急発達する時期に、正しい体の使い方を学習。</p></div>
+          <div class="feature"><h3>姿勢・体幹を根本から改善</h3><p>運動連鎖理論で神経・筋肉・骨格を連動させ、姿勢改善と体力向上を同時に実現。</p></div>
         </div>
       </div>
     </section>
@@ -808,68 +867,82 @@
         <div class="eyebrow">Recommended</div>
         <h2>こんな子が<br>来ています</h2>
         <div class="persona-grid">
-          <div class="persona"><h3>スポーツを頑張っている子</h3><ul><li>競技力を高めたい</li><li>パフォーマンスが伸び悩んでいる</li><li>怪我を予防したい</li></ul></div>
-          <div class="persona"><h3>姿勢・体の悩みがある子</h3><ul><li>姿勢が悪い</li><li>肩こりや頭痛がある</li><li>体が硬い</li></ul></div>
+          <div class="persona"><h3>スポーツ・部活を本気でやっている子</h3><ul><li>部活で他の選手と差をつけたい</li><li>怪我が多く、体の使い方を見直したい</li><li>本格的な個別指導を受けたい</li></ul></div>
+          <div class="persona"><h3>姿勢・体調を改善したい子</h3><ul><li>猫背・巻き肩・反り腰が気になる</li><li>慢性的な頭痛・肩こりがある</li><li>体力・集中力が続かない</li></ul></div>
         </div>
       </div>
     </section>
 
     <section class="section" id="section-05">
       <div class="inner">
-        <div class="eyebrow">Trainer & Voice</div>
-        <h2>トレーナー /<br>保護者の声</h2>
+        <div class="eyebrow">Trainer & voice</div>
+        <h2>月島店の<br>トレーナー紹介</h2>
         <div class="trainer-card">
           <img src="assets/kijima-card.jpg" alt="">
-          <div><small>Kakeru Kijima</small><h3>木嶋 翔</h3><p>整体師としての経験も活かし、初心者から上級者まで幅広くサポートします。</p></div>
+          <div>
+            <div class="en">Kakeru Kijima</div>
+            <h3>木嶋 翔</h3>
+            <p>大手フィットネスジムでトレーナー兼マネージャー/研修講師を担当。整体師としての経験も活かし、初心者から上級者まで幅広くサポート。</p>
+            <div class="license">NESTA-PFT / ファンクショナルアナトミー スペシャリスト / スリープサイエンススペシャリスト</div>
+          </div>
         </div>
         <div class="trainer-card">
           <img src="assets/takakura-card.png" alt="">
-          <div><small>Hiroki Takakura</small><h3>高倉 大輝</h3><p>姿勢改善・機能改善を軸に、成長期の身体づくりを丁寧に指導します。</p></div>
-        </div>
-        <div class="voice">
-          <div class="voice-title">
-            <div class="eyebrow">Guardian voice</div>
-            <h2>保護者の声</h2>
-          </div>
-          <div class="voice-list">
-            <div class="voice-card">
-              <img src="assets/voice-guardian-01.png" alt="">
-              <div class="voice-body">
-                <h3>走り方が変わり、短距離のタイムが縮んだ</h3>
-                <p>元々走るフォームが悪く、力みが出たり、腕を上手く振れなかったが、専門的な指導のおかげで、体の使い方を根本から見直すことができました。特に、重心移動や腕の振り方を意識するようになってからは、無駄な力が抜け、スムーズに走れるように。その結果、短距離走のタイムが大幅に縮まり、本人も自信がついたようです。</p>
-                <div class="voice-person">高校1年生 女子</div>
-              </div>
-            </div>
-            <div class="voice-card">
-              <img src="assets/voice-guardian-02.png" alt="">
-              <div class="voice-body">
-                <h3>部活では聞けない体の使い方を教えてもらえる</h3>
-                <p>バスケ部で毎日練習をしているものの、基礎的な体の使い方がわかっておらず、パフォーマンスが伸び悩んでいました。しかし、こちらで体の軸の意識や、ジャンプ時の着地の仕方など、部活ではなかなか教えてもらえない専門的な体の使い方を学ぶことができました。おかげで、プレイの質が向上し、怪我の予防にも繋がっています。</p>
-                <div class="voice-person">中学1年生 男子</div>
-              </div>
-            </div>
-            <div class="voice-card">
-              <img src="assets/voice-guardian-03.png" alt="">
-              <div class="voice-body">
-                <h3>猫背を解消して、勉強に集中できるようになった</h3>
-                <p>運動は元々得意ではなかったので、運動不足になりがちでしたが、姿勢が悪くなり、集中力が続かないことが悩みでした。こちらで猫背を改善するためのストレッチや体幹トレーニングを教えていただき、継続することで、見違えるほど姿勢が良くなりました。その結果、長時間座っていても疲れにくくなり、勉強にも以前より集中できるようになりました。</p>
-                <div class="voice-person">小学5年生 男子</div>
-              </div>
-            </div>
-            <div class="voice-card">
-              <img src="assets/voice-guardian-04.png" alt="">
-              <div class="voice-body">
-                <h3>怪我を繰り返さなくなり、安定してパフォーマンスが出せるようになった</h3>
-                <p>右足の捻挫が多くクセになっていましたが、バランスや体の連動性を意識したトレーニングを取り入れたことで、怪我をしにくい体へと変化しました。以前は不安を感じながらプレイしていましたが、今では安心して全力でパフォーマンスを発揮できるようになり、親としても大変嬉しく思っています。</p>
-                <div class="voice-person">中学3年生 男子</div>
-              </div>
-            </div>
+          <div>
+            <div class="en">Hiroki Takakura</div>
+            <h3>高倉 大輝</h3>
+            <p>元消防士。大手パーソナルジムで約5年間、トレーナー兼マネージャー/研修講師を担当。姿勢改善・機能改善を軸に指導。</p>
+            <div class="license">NESTA-PFT / NASM-PES / スリープサイエンススペシャリスト</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="section-06">
+    <section class="section voice" id="section-06">
+      <div class="inner">
+        <div class="voice-title">
+          <div class="eyebrow">Guardian voice</div>
+          <h2>保護者の声</h2>
+        </div>
+        <div class="voice-list">
+          <div class="voice-card">
+            <img src="assets/voice-guardian-01.png" alt="">
+            <div class="voice-body">
+              <h3>走り方が変わり、短距離のタイムが縮んだ</h3>
+              <p>元々走るフォームが悪く、力みが出たり、腕を上手く振れなかったが、専門的な指導のおかげで、体の使い方を根本から見直すことができました。特に、重心移動や腕の振り方を意識するようになってからは、無駄な力が抜け、スムーズに走れるように。その結果、短距離走のタイムが大幅に縮まり、本人も自信がついたようです。</p>
+              <div class="voice-person">高校1年生 女子</div>
+            </div>
+          </div>
+          <div class="voice-card">
+            <img src="assets/voice-guardian-02.png" alt="">
+            <div class="voice-body">
+              <h3>部活では聞けない体の使い方を教えてもらえる</h3>
+              <p>バスケ部で毎日練習をしているものの、基礎的な体の使い方がわかっておらず、パフォーマンスが伸び悩んでいました。しかし、こちらで体の軸の意識や、ジャンプ時の着地の仕方など、部活ではなかなか教えてもらえない専門的な体の使い方を学ぶことができました。おかげで、プレイの質が向上し、怪我の予防にも繋がっています。</p>
+              <div class="voice-person">中学1年生 男子</div>
+            </div>
+          </div>
+          <div class="voice-card">
+            <img src="assets/voice-guardian-03.png" alt="">
+            <div class="voice-body">
+              <h3>猫背を解消して、勉強に集中できるようになった</h3>
+              <p>運動は元々得意ではなかったので、運動不足になりがちでしたが、姿勢が悪くなり、集中力が続かないことが悩みでした。こちらで猫背を改善するためのストレッチや体幹トレーニングを教えていただき、継続することで、見違えるほど姿勢が良くなりました。その結果、長時間座っていても疲れにくくなり、勉強にも以前より集中できるようになりました。</p>
+              <div class="voice-person">小学5年生 男子</div>
+            </div>
+          </div>
+          <div class="voice-card">
+            <img src="assets/voice-guardian-04.png" alt="">
+            <div class="voice-body">
+              <h3>怪我を繰り返さなくなり、安定してパフォーマンスが出せるようになった</h3>
+              <p>右足の捻挫が多くクセになっていましたが、バランスや体の連動性を意識したトレーニングを取り入れたことで、怪我をしにくい体へと変化しました。以前は不安を感じながらプレイしていましたが、今では安心して全力でパフォーマンスを発揮できるようになり、親としても大変嬉しく思っています。</p>
+              <div class="voice-person">中学3年生 男子</div>
+            </div>
+          </div>
+        </div>
+        <a class="cta" href="https://reserve.quick-reserve.com/core?view=eyJ2ZXJzaW9uIjoyLCJzdG9yZXMiOlt7ImlkIjoyMzEsImNvdXJzZUlkcyI6WzI3OTJdfV19" target="_blank" rel="noopener noreferrer">体験トレーニングに申し込む</a>
+      </div>
+    </section>
+
+    <section class="section" id="section-07">
       <div class="inner">
         <div class="eyebrow">Price Plan</div>
         <h2>料金プラン</h2>
@@ -933,20 +1006,22 @@
       </div>
     </section>
 
-    <section class="section" id="section-07">
+    <section class="section" id="section-08">
       <div class="inner">
-        <div class="eyebrow">Trial Flow</div>
+        <div class="eyebrow">Trial flow</div>
         <h2>体験トレーニングの流れ</h2>
         <div class="flow-list">
-          <div class="flow-step"><img src="assets/flow01-smartphone.jpg" alt=""><div><small>FLOW 01</small><h3>カウンセリング</h3><p>お子さんの悩みや目標をお聞きします。</p></div></div>
-          <div class="flow-step"><img src="assets/flow03.jpg" alt=""><div><small>FLOW 02</small><h3>体の状態チェック</h3><p>姿勢、柔軟性、筋力などを評価します。</p></div></div>
-          <div class="flow-step"><img src="assets/flow04.jpg" alt=""><div><small>FLOW 03</small><h3>トレーニング体験</h3><p>その子に合わせたプログラムを実施します。</p></div></div>
-          <div class="flow-step"><img src="assets/flow05.jpg" alt=""><div><small>FLOW 04</small><h3>フィードバック</h3><p>結果と今後のプランをご説明します。</p></div></div>
+          <div class="flow-step"><img src="assets/flow01-smartphone.jpg" alt=""><div><small>FLOW 01</small><h3>Webからお申し込み</h3><p>予約フォームから30秒で予約可能。完了メールが届いたら予約完了です。</p></div></div>
+          <div class="flow-step"><img src="assets/flow02.jpg" alt=""><div><small>FLOW 02</small><h3>手ぶらでご来店</h3><p>ウェアは無料でご用意。学校帰りやお出かけ前後も通いやすく。</p></div></div>
+          <div class="flow-step"><img src="assets/flow03.jpg" alt=""><div><small>FLOW 03</small><h3>測定・カウンセリング</h3><p>身体の状態、競技、悩み、生活習慣を丁寧にヒアリングします。</p></div></div>
+          <div class="flow-step"><img src="assets/flow04.jpg" alt=""><div><small>FLOW 04</small><h3>体験トレーニング</h3><p>ストレッチやアップを行い、オーダーメイドのプログラムを体験。</p></div></div>
+          <div class="flow-step"><img src="assets/flow05.jpg" alt=""><div><small>FLOW 05</small><h3>プランのご提案</h3><p>現状と課題、今後の改善ポイントをトレーナーがご説明します。</p></div></div>
         </div>
+        <a class="cta" href="https://reserve.quick-reserve.com/core?view=eyJ2ZXJzaW9uIjoyLCJzdG9yZXMiOlt7ImlkIjoyMzEsImNvdXJzZUlkcyI6WzI3OTJdfV19" target="_blank" rel="noopener noreferrer">体験トレーニングに申し込む</a>
       </div>
     </section>
 
-    <section class="section" id="section-08">
+    <section class="section" id="section-09">
       <div class="inner">
         <div class="eyebrow">Access & FAQ</div>
         <h2>Dr.core月島店の<br>アクセス</h2>
@@ -964,24 +1039,34 @@
           <div class="info-row"><b>電話</b><span>03-3520-8337</span></div>
           <div class="info-row"><b>営業時間</b><span>10:00〜22:00 / 年中無休</span></div>
         </div>
+        <div class="route-grid">
+          <div class="route"><img src="assets/route01.jpg" alt=""><p>月島駅の6番出口から地上に出て、そのまま佃方面へ直進します。</p></div>
+          <div class="route"><img src="assets/route02.jpg" alt=""><p>左手に「パパスバル 月島本店」が見えたら、交差点を渡って左へ。</p></div>
+          <div class="route"><img src="assets/route03.jpg" alt=""><p>右側に見えるマンションの102号室がDr.core月島店です。</p></div>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="section-09">
+    <section class="section" id="section-10">
       <div class="inner">
         <div class="eyebrow">Q and A</div>
         <h2>よくある質問</h2>
         <div class="faq-list">
-          <div class="qa"><b>Q.</b><h3>何歳から始められますか？</h3><p>7歳から18歳までが対象です。成長期の体の発達段階に合わせたプログラムを提供します。</p></div>
-          <div class="qa"><b>Q.</b><h3>スポーツの経験がなくても大丈夫ですか？</h3><p>もちろんです。これからスポーツを始めたい方や、体の悩みがある方にもおすすめです。</p></div>
-          <div class="qa"><b>Q.</b><h3>どのくらいで効果が出ますか？</h3><p>個人差がありますが、多くの方が3ヶ月で変化を実感されています。</p></div>
-          <div class="qa"><b>Q.</b><h3>保護者の同伴は必要ですか？</h3><p>初回体験時は、保護者の同伴をお勧めしています。2回目以降は、お子さんのみでのご参加も可能です。</p></div>
+          <div class="qa"><b>Q.</b><h3>運動が苦手でも続けられますか？</h3><p>大丈夫です。Dr.coreでは身体の状態に合わせて、無理なく段階的に進めます。</p></div>
+          <div class="qa"><b>Q.</b><h3>本格的に始める前に体験できますか？</h3><p>はい、体験できます。レンタルウェアもありますので、お気軽にお越しください。</p></div>
+          <div class="qa"><b>Q.</b><h3>クレジットカードは使えますか？</h3><p>JCB、VISA、MASTER、AMEX、ダイナース、各種クレジットに対応しています。</p></div>
+          <div class="qa"><b>Q.</b><h3>週に何回くらい通うのが理想ですか？</h3><p>目的や生活習慣により異なりますので、体験トレーニングでお伝えします。</p></div>
+          <div class="qa"><b>Q.</b><h3>体験後に入会しないといけませんか？</h3><p>強引な勧誘は一切ありません。納得された時だけで大丈夫です。</p></div>
         </div>
-        <a class="cta" href="https://reserve.quick-reserve.com/core?view=eyJ2ZXJzaW9uIjoyLCJzdG9yZXMiOlt7ImlkIjoyMzEsImNvdXJzZUlkcyI6WzI3OTJdfV19" target="_blank" rel="noopener noreferrer">体験トレーニングに申し込む</a>
+        <div class="final-band">
+          <h2>初回体験レッスンが<br><span class="green">60分1,000円</span></h2>
+          <p style="margin-top:10px;color:rgba(255,255,255,.72)">7月31日までの予約限定</p>
+          <a class="cta" href="https://reserve.quick-reserve.com/core?view=eyJ2ZXJzaW9uIjoyLCJzdG9yZXMiOlt7ImlkIjoyMzEsImNvdXJzZUlkcyI6WzI3OTJdfV19" target="_blank" rel="noopener noreferrer">体験トレーニングに申し込む</a>
+        </div>
       </div>
     </section>
 
-    <section class="section dark services" id="section-10">
+    <section class="section dark services" id="section-11">
       <div class="inner">
         <div class="eyebrow">OUR SERVICES</div>
         <h2>展開中のサービス</h2>
@@ -1036,11 +1121,12 @@
         <a href="#section-02">お悩み</a>
         <a href="#section-03">Dr.core U18とは</a>
         <a href="#section-04">こんな子が来ています</a>
-        <a href="#section-05">トレーナー / 保護者の声</a>
-        <a href="#section-06">料金プラン</a>
-        <a href="#section-07">体験の流れ</a>
-        <a href="#section-08">アクセス</a>
-        <a href="#section-09">よくある質問</a>
+        <a href="#section-05">トレーナー紹介</a>
+        <a href="#section-06">保護者の声</a>
+        <a href="#section-07">料金プラン</a>
+        <a href="#section-08">体験の流れ</a>
+        <a href="#section-09">アクセス</a>
+        <a href="#section-10">よくある質問</a>
       </nav>
       <p class="copyright">Dr.core U18 / Youth personal training program</p>
     </footer>
