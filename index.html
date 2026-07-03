@@ -531,14 +531,37 @@
     .flow-step small { color: var(--green-dark); font-weight: 950; letter-spacing: .1em; }
     .flow-step p { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.65; }
 
-    .map-link {
-      display: block;
-      margin-top: 22px;
-      padding: 22px;
-      background: #fff;
+    .map {
+      margin-top: 24px;
+      height: 256px;
+      background: #e8ede9;
       border: 1px solid var(--line);
-      color: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+    .map iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .map-open {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 34px;
+      padding: 0 12px;
+      background: rgba(7,9,8,.86);
+      color: #fff;
       text-decoration: none;
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
     }
     .info-list { margin-top: 18px; background: #fff; border: 1px solid var(--line); }
     .info-row { padding: 14px 16px; border-bottom: 1px solid var(--line); }
@@ -550,17 +573,86 @@
     .qa b { color: var(--green-dark); font-size: 18px; margin-right: 8px; }
     .qa p { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.7; }
 
-    .service-card {
-      display: grid;
-      grid-template-columns: 96px 1fr;
-      gap: 14px;
-      align-items: center;
-      padding: 12px;
-      color: var(--ink);
-      text-decoration: none;
+    .services-desc {
+      color: rgba(255,255,255,.78);
+      font-size: 15px;
+      line-height: 1.9;
+      margin-top: 12px;
+      margin-bottom: 32px;
     }
-    .service-card img { width: 96px; height: 76px; object-fit: cover; }
-    .service-card p { color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .service-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 200px;
+      padding: 16px;
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .service-card-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.2) 40%, rgba(0,0,0,0) 100%),
+        linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.6) 100%);
+    }
+    .service-card-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,.3);
+    }
+    .service-title {
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .service-subtitle {
+      font-size: 12px;
+      color: rgba(255,255,255,.72);
+      line-height: 1.5;
+    }
+    .service-arrow {
+      font-size: 18px;
+      color: var(--green);
+      margin-top: 12px;
+    }
+    .services-instagram {
+      padding: 20px;
+      background: rgba(45,217,122,.08);
+      border: 1px solid rgba(45,217,122,.2);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .services-instagram a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+      transition: opacity .3s ease;
+    }
+    .services-instagram a:hover { opacity: .8; }
 
     .site-footer {
       background: #070908;
@@ -626,8 +718,12 @@
     }
 
     @media (min-width: 431px) {
-      body { padding: 24px 0; }
-      .page { box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 24px 70px rgba(0,0,0,.14); }
+      body { padding: 0; background: var(--paper); }
+      .page { box-shadow: none; }
+      .services-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .service-card { min-height: 240px; padding: 20px; }
+      .service-title { font-size: 16px; }
+      .service-subtitle { font-size: 13px; }
     }
   </style>
 </head>
@@ -852,15 +948,19 @@
 
     <section class="section" id="section-08">
       <div class="inner">
-        <div class="eyebrow">Access</div>
-        <h2>アクセス</h2>
-        <a class="map-link" href="https://maps.app.goo.gl/vatbT1pgNW52R4jQ9" target="_blank" rel="noopener noreferrer">
-          <h3>Googleマップで開く</h3>
-          <p>Dr.core月島店の場所を確認できます。</p>
-        </a>
+        <div class="eyebrow">Access & FAQ</div>
+        <h2>Dr.core月島店の<br>アクセス</h2>
+        <div class="map">
+          <iframe
+            title="パーソナルジム Dr.core 月島店の地図"
+            src="https://www.google.com/maps?q=%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AB%E3%82%B8%E3%83%A0%20Dr.core%20%E6%9C%88%E5%B3%B6%E5%BA%97&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="map-open" href="https://maps.app.goo.gl/vatbT1pgNW52R4jQ9" target="_blank" rel="noopener noreferrer">Googleマップで開く</a>
+        </div>
         <div class="info-list">
-          <div class="info-row"><b>住所</b><span>東京都中央区佃2-5-13 スカイコートパレス月島102</span></div>
-          <div class="info-row"><b>アクセス</b><span>月島駅より徒歩3分</span></div>
+          <div class="info-row"><b>住所</b><span>東京都中央区佃2-5-13<br>スカイコートパレス月島102</span></div>
+          <div class="info-row"><b>アクセス</b><span>東京メトロ有楽町線/都営地下鉄大江戸線「月島駅」より徒歩3分</span></div>
           <div class="info-row"><b>電話</b><span>03-3520-8337</span></div>
           <div class="info-row"><b>営業時間</b><span>10:00〜22:00 / 年中無休</span></div>
         </div>
@@ -881,29 +981,68 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section dark services" id="section-10">
       <div class="inner">
-        <div class="eyebrow">Our Services</div>
-        <h2>OUR SERVICES</h2>
-        <p class="body-copy">Dr.coreは、年代別・目的別に最適なトレーニングプログラムを提供しています。</p>
-        <div class="service-grid">
-          <a class="service-card" href="https://drcore-personal.manus.space" target="_blank" rel="noopener noreferrer"><img src="assets/service-personal.png" alt=""><div><h3>Dr.core Personal</h3><p>大人向けパーソナル</p></div></a>
-          <a class="service-card" href="#section-01"><img src="assets/trial-banner-u18-child.png" alt=""><div><h3>Dr.core U18</h3><p>7〜18歳向けパーソナル</p></div></a>
-          <a class="service-card" href="https://drcore-woman2.manus.space" target="_blank" rel="noopener noreferrer"><img src="assets/service-woman.png" alt=""><div><h3>Dr.core Woman</h3><p>50歳以上の女性向け</p></div></a>
-          <a class="service-card" href="https://drcore-jr.manus.space" target="_blank" rel="noopener noreferrer"><img src="assets/service-jr.png" alt=""><div><h3>Dr.core Jr</h3><p>子供向け運動教室</p></div></a>
+        <div class="eyebrow">OUR SERVICES</div>
+        <h2>展開中のサービス</h2>
+        <p class="services-desc">Dr.coreは、世代や目的に合わせて複数のサービスを展開しています。ひとつの店舗で終わらない、広がりのあるブランドです。</p>
+        <div class="services-grid">
+          <a href="https://drcore.jp/" target="_blank" rel="noopener noreferrer" class="service-card" style="background-image:url('assets/service-personal-ref.webp')">
+            <div class="service-card-overlay"></div>
+            <div class="service-card-content">
+              <div class="service-title">Dr.core Personal</div>
+              <div class="service-subtitle">大人向けパーソナル</div>
+              <span class="service-arrow">→</span>
+            </div>
+          </a>
+          <a href="https://drcore-u18.manus.space" target="_blank" rel="noopener noreferrer" class="service-card" style="background-image:url('assets/service-u18-ref.png')">
+            <div class="service-card-overlay"></div>
+            <div class="service-card-content">
+              <div class="service-title">Dr.core U18</div>
+              <div class="service-subtitle">7〜18歳向けパーソナル</div>
+              <span class="service-arrow">→</span>
+            </div>
+          </a>
+          <a href="https://drcore-woman2.manus.space" target="_blank" rel="noopener noreferrer" class="service-card" style="background-image:url('assets/service-woman-ref.png')">
+            <div class="service-card-overlay"></div>
+            <div class="service-card-content">
+              <div class="service-title">Dr.core Woman</div>
+              <div class="service-subtitle">50歳以上の女性向けグループレッスン</div>
+              <span class="service-arrow">→</span>
+            </div>
+          </a>
+          <a href="https://jr.drcore.jp/" target="_blank" rel="noopener noreferrer" class="service-card" style="background-image:url('assets/service-jr-ref.webp')">
+            <div class="service-card-overlay"></div>
+            <div class="service-card-content">
+              <div class="service-title">Dr.core Jr</div>
+              <div class="service-subtitle">子供向け運動教室<br><span style="font-size:12px;color:rgba(255,255,255,.6)">(低学年向け/満枠のため受付停止中)</span></div>
+              <span class="service-arrow">→</span>
+            </div>
+          </a>
+        </div>
+        <div class="services-instagram">
+          <a href="https://www.instagram.com/dr.core_gym" target="_blank" rel="noopener noreferrer">
+            Dr.core 公式Instagram<br>
+            <span style="font-size:13px;color:var(--green)">店舗の雰囲気やトレーニングの様子を見る →</span>
+          </a>
         </div>
       </div>
     </section>
 
     <footer class="site-footer">
       <div class="footer-logo">Dr.core <span>U18</span></div>
-      <nav class="footer-nav">
-        <a href="#">プライバシーポリシー</a>
-        <a href="#">利用規約</a>
-        <a href="#">お問い合わせ</a>
-        <a href="https://instagram.com/drcore" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <nav class="footer-nav" aria-label="フッターメニュー">
+        <a href="#section-01">ページトップ</a>
+        <a href="#section-02">お悩み</a>
+        <a href="#section-03">Dr.core U18とは</a>
+        <a href="#section-04">こんな子が来ています</a>
+        <a href="#section-05">トレーナー / 保護者の声</a>
+        <a href="#section-06">料金プラン</a>
+        <a href="#section-07">体験の流れ</a>
+        <a href="#section-08">アクセス</a>
+        <a href="#section-09">よくある質問</a>
       </nav>
-      <p class="copyright">© 2026 Dr.core. All rights reserved.</p>
+      <p class="copyright">Dr.core U18 / Youth personal training program</p>
     </footer>
   </main>
 
