@@ -228,6 +228,129 @@
     .reservation .price { font-size: 39px; line-height: 1; font-weight: 950; color: var(--green-dark); }
     .reservation small { display: block; margin-top: 8px; color: var(--muted); font-weight: 800; }
 
+    .session-showcase {
+      width: calc(100% + 44px);
+      margin: 28px 0 -20px -22px;
+      padding: 24px 20px 30px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(45,217,122,.14), rgba(45,217,122,0) 28%),
+        linear-gradient(135deg, #0b100d 0%, #080a09 58%, #101711 100%);
+      border-top: 1px solid rgba(45,217,122,.22);
+    }
+    .session-showcase:before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 -28px;
+      width: 118px;
+      background: rgba(45,217,122,.08);
+      transform: skewX(-16deg);
+      pointer-events: none;
+    }
+    .session-head {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+    .session-head small {
+      display: block;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .session-head strong {
+      display: block;
+      margin-top: 6px;
+      color: #fff;
+      font-size: 22px;
+      line-height: 1.22;
+      font-weight: 950;
+    }
+    .session-pulse {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(45,217,122,.44);
+      border-radius: 999px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 950;
+      box-shadow: 0 0 0 8px rgba(45,217,122,.08);
+    }
+    .session-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+    }
+    .session-card {
+      position: relative;
+      min-height: 176px;
+      overflow: hidden;
+      background: #141a16;
+      border: 1px solid rgba(255,255,255,.12);
+      clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
+    }
+    .session-card:nth-child(even) {
+      clip-path: polygon(4% 0, 100% 0, 100% 100%, 0 100%);
+    }
+    .session-card.featured { min-height: 238px; }
+    .session-card img {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      display: block;
+      object-fit: cover;
+      filter: saturate(1.05) contrast(1.03);
+    }
+    .session-card:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0) 42%, rgba(0,0,0,.64) 100%),
+        linear-gradient(90deg, rgba(45,217,122,.22), rgba(45,217,122,0) 35%);
+      pointer-events: none;
+    }
+    .session-label {
+      position: absolute;
+      left: 13px;
+      bottom: 13px;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 30px;
+      padding: 0 10px;
+      background: rgba(7,9,8,.82);
+      border: 1px solid rgba(255,255,255,.16);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      backdrop-filter: blur(8px);
+    }
+    .session-label b { color: var(--green); font-size: 13px; }
+    .session-copy {
+      position: relative;
+      z-index: 1;
+      margin-top: 14px;
+      padding: 14px 15px;
+      border: 1px solid rgba(45,217,122,.24);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      line-height: 1.72;
+    }
+
     .banner {
       height: 270px;
       background: #101511;
@@ -823,6 +946,34 @@
           <h3>初回体験レッスン</h3>
           <div class="price">60分 1,000円</div>
           <small>7月31日までの予約限定 / 先着枠あり</small>
+        </div>
+        <div class="session-showcase" aria-label="Dr.core U18の実際のトレーニング風景">
+          <div class="session-head">
+            <div>
+              <small>Real session</small>
+              <strong>動ける身体は、<br>現場で変わる。</strong>
+            </div>
+            <div class="session-pulse">U18</div>
+          </div>
+          <div class="session-grid">
+            <div class="session-card featured">
+              <img src="assets/u18-session-01.jpg" alt="Dr.core U18でハードルジャンプを行う子どもとトレーナー">
+              <div class="session-label"><b>01</b> SPEED</div>
+            </div>
+            <div class="session-card">
+              <img src="assets/u18-session-02.jpg" alt="Dr.core U18でバランスボールを使ったトレーニングを行う子ども">
+              <div class="session-label"><b>02</b> BALANCE</div>
+            </div>
+            <div class="session-card">
+              <img src="assets/u18-session-03.jpg" alt="Dr.core U18でフォーム指導を受けながらトレーニングを行う子ども">
+              <div class="session-label"><b>03</b> POWER</div>
+            </div>
+            <div class="session-card">
+              <img src="assets/u18-session-04.jpg" alt="Dr.core U18で体幹と姿勢のトレーニングを行う子ども">
+              <div class="session-label"><b>04</b> CORE</div>
+            </div>
+          </div>
+          <p class="session-copy">競技力、姿勢、体幹、反応速度。スタジオでの動きを細かく見ながら、その子に必要な課題へマンツーマンでアプローチします。</p>
         </div>
       </div>
     </section>
